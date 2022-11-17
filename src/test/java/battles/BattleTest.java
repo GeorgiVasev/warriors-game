@@ -1,6 +1,7 @@
 package battles;
 
 import Armies.Army;
+import charchters.Defender;
 import charchters.Knight;
 import charchters.Warrior;
 import org.junit.jupiter.api.BeforeEach;
@@ -144,4 +145,43 @@ class BattleTest {
         assertTrue(Battle.fight(blueArmy, redArmy));
     }
 
+    @Test
+    @DisplayName("Battle 7")
+    void seventhBattle() {
+        blueArmy.addUnit(Warrior::new, 5);
+        blueArmy.addUnit(Defender::new, 4);
+        blueArmy.addUnit(Defender::new, 5);
+        redArmy.addUnit(Warrior::new, 4);
+        assertTrue(Battle.fight(blueArmy, redArmy));
+    }
+
+    @Test
+    @DisplayName("Battle 8")
+    void eightBattle() {
+        blueArmy.addUnit(Defender::new, 5);
+        blueArmy.addUnit(Warrior::new, 20);
+        redArmy.addUnit(Warrior::new, 21);
+        blueArmy.addUnit(Defender::new, 4);
+        assertTrue(Battle.fight(blueArmy, redArmy));
+    }
+
+    @Test
+    @DisplayName("Battle 9")
+    void ninthBattle() {
+        blueArmy.addUnit(Warrior::new, 10);
+        blueArmy.addUnit(Defender::new, 5);
+        blueArmy.addUnit(Warrior::new, 5);
+        redArmy.addUnit(Defender::new, 10);
+        assertTrue(Battle.fight(blueArmy, redArmy));
+    }
+
+    @Test
+    @DisplayName("Battle 10")
+    void tenthBattle() {
+        blueArmy.addUnit(Defender::new, 2);
+        blueArmy.addUnit(Warrior::new, 1);
+        blueArmy.addUnit(Defender::new, 1);
+        redArmy.addUnit(Warrior::new, 5);
+        assertFalse(Battle.fight(blueArmy, redArmy));
+    }
 }

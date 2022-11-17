@@ -7,6 +7,9 @@ import charchters.Warrior;
 
 public class Battle {
 
+    private Battle() {
+    }
+
     public static boolean fight(Warrior warriorOne, Warrior warriorTwo) {
         while (warriorOne.isAlive() && warriorTwo.isAlive()) {
             warriorTwo.receiveDmg(warriorOne.getAttack());
