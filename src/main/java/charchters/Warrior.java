@@ -19,6 +19,10 @@ public class Warrior {
         return health > 0;
     }
 
+    public void receiveDmg(int attack) {
+        health -= attack;
+    }
+
     public int getAttack() {
         return attack;
     }
