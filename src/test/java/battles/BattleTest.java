@@ -3,6 +3,7 @@ package battles;
 import Armies.Army;
 import charchters.Defender;
 import charchters.Knight;
+import charchters.Vampire;
 import charchters.Warrior;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +24,9 @@ class BattleTest {
     private Warrior carl;
     private Warrior bucky;
     private Knight jim;
+    private Defender james;
+    private Defender bob;
+    private Rookie gogi;
 
     @BeforeEach
     public void setup() {
@@ -30,8 +34,9 @@ class BattleTest {
         carl = new Warrior();
         bucky = new Warrior();
         jim = new Knight();
-
-        // Armies setup
+        james = new Defender();
+        bob = new Defender();
+        gogi = new Rookie();
     }
 
     @Test
@@ -79,6 +84,21 @@ class BattleTest {
     void seventhFight() {
         Battle.fight(carl, jim);
         assertFalse(Battle.fight(jim, bucky));
+    }
+
+    @Test
+    @DisplayName("Fight 8")
+    void eightFight() {
+        Battle.fight(james, gogi);
+        assertEquals(60, james.getHealth());
+        assertTrue(Battle.fight(james, bob));
+    }
+
+    @Test
+    @DisplayName("Fight 9")
+    void ninthFight() {
+        Battle.fight(james, gogi);
+        assertTrue(Battle.fight(james, bucky));
     }
 
     //Battle test where two armies fight
@@ -160,7 +180,6 @@ class BattleTest {
                         new Army()
                                 .addUnit(Warrior::new, 5),
                         false)
-
         );
     }
 

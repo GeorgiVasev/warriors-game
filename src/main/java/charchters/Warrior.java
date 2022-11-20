@@ -2,8 +2,8 @@ package charchters;
 
 public class Warrior {
 
-    private int attack;
-    private int health;
+    protected int attack;
+    protected int health;
 
     public Warrior() {
         this.attack = 5;
@@ -19,8 +19,8 @@ public class Warrior {
         return health > 0;
     }
 
-    public void receiveDmg(int attack) {
-        health -= attack;
+    public void getsHit(Warrior warrior) {
+        health -= warrior.getAttack();
     }
 
     public int getAttack() {
@@ -31,7 +31,7 @@ public class Warrior {
         return health;
     }
 
-    public void setHealth(int health) {
+    void setHealth(int health) {
         this.health = health;
     }
 }

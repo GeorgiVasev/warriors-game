@@ -9,12 +9,12 @@ public class Defender extends Warrior {
     }
 
     @Override
-    public void receiveDmg(int attack) {
-        attack -= getDefense();
+    public void getsHit(Warrior warrior) {
+        int attack = warrior.getAttack() - getDefense();
         if (attack <= 0) {
             attack = 0;
         }
-        super.receiveDmg(attack);
+        setHealth(getHealth() - attack);
     }
 
     public int getDefense() {
