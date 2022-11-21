@@ -7,6 +7,7 @@ public class Defender extends Warrior {
     public Defender() {
         super(60);
     }
+
     @Override
     public int getAttack() {
         return 3;
@@ -14,7 +15,7 @@ public class Defender extends Warrior {
 
     @Override
     void receiveDamage(int attack) {
-       super.receiveDamage(Math.max(0,attack - getDefense()));
+        super.receiveDamage(Math.max(0, attack - getDefense()));
     }
 
     public int getDefense() {

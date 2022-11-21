@@ -6,6 +6,12 @@ public class Warrior {
     private int health;
     private final int initialHealth;
 
+    private Warrior nextWarrior;
+
+    public Warrior getNextWarrior() {
+        return nextWarrior;
+    }
+
     public Warrior() {
         this(50);
     }
