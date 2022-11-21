@@ -2,36 +2,43 @@ package charchters;
 
 public class Warrior {
 
-    protected int attack;
-    protected int health;
+    private static int ATTACK = 5;
+    private int health;
+    private final int initialHealth;
 
     public Warrior() {
-        this.attack = 5;
-        this.health = 50;
+        this(50);
     }
 
-    protected Warrior(int attack, int health) {
-        this.attack = attack;
-        this.health = health;
+    protected Warrior(int health) {
+        initialHealth = this.health = health;
     }
 
     public boolean isAlive() {
         return health > 0;
     }
 
-    public void getsHit(Warrior warrior) {
-        health -= warrior.getAttack();
+    public void hit(Warrior opponent) {
+        opponent.receiveDamage(getAttack());
+    }
+
+    void receiveDamage(int attack) {
+        setHealth(getHealth() - attack);
     }
 
     public int getAttack() {
-        return attack;
+        return ATTACK;
     }
 
     public int getHealth() {
         return health;
     }
 
-    void setHealth(int health) {
-        this.health = health;
+    private void setHealth(int health) {
+        this.health = Math.min(initialHealth, health);
+    }
+
+    protected void healBy(int healPoint) {
+        setHealth(getHealth() + healPoint);
     }
 }

@@ -27,6 +27,7 @@ class BattleTest {
     private Defender james;
     private Defender bob;
     private Rookie gogi;
+    private Vampire dracula;
 
     @BeforeEach
     public void setup() {
@@ -37,6 +38,7 @@ class BattleTest {
         james = new Defender();
         bob = new Defender();
         gogi = new Rookie();
+        dracula = new Vampire();
     }
 
     @Test
@@ -99,6 +101,14 @@ class BattleTest {
     void ninthFight() {
         Battle.fight(james, gogi);
         assertTrue(Battle.fight(james, bucky));
+    }
+
+    @Test
+    @DisplayName("Fight 10")
+    void tenthFight() {
+        assertTrue(Battle.fight(james, dracula));
+        assertEquals(22,james.getHealth());
+        assertEquals(-1,dracula.getHealth());
     }
 
     //Battle test where two armies fight
@@ -179,7 +189,38 @@ class BattleTest {
                                 .addUnit(Defender::new, 1),
                         new Army()
                                 .addUnit(Warrior::new, 5),
-                        false)
+                        false),
+                arguments(
+                        new Army()
+                                .addUnit(Defender::new, 2)
+                                .addUnit(Vampire::new, 3)
+                                .addUnit(Warrior::new, 4),
+                        new Army()
+                                .addUnit(Warrior::new, 4)
+                                .addUnit(Defender::new, 4)
+                                .addUnit(Vampire::new, 3),
+                        false),
+                arguments(
+                        new Army()
+                                .addUnit(Defender::new, 11)
+                                .addUnit(Vampire::new, 3)
+                                .addUnit(Warrior::new, 4),
+                        new Army()
+                                .addUnit(Warrior::new, 4)
+                                .addUnit(Defender::new, 4)
+                                .addUnit(Vampire::new, 13),
+                        true),
+                arguments(
+                        new Army()
+                                .addUnit(Defender::new, 9)
+                                .addUnit(Vampire::new, 3)
+                                .addUnit(Warrior::new, 8),
+                        new Army()
+                                .addUnit(Warrior::new, 4)
+                                .addUnit(Defender::new, 4)
+                                .addUnit(Vampire::new, 13),
+                        true)
+
         );
     }
 

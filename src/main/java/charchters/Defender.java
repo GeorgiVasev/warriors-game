@@ -5,16 +5,16 @@ public class Defender extends Warrior {
     private static final int DEFENSE = 2;
 
     public Defender() {
-        super(3, 60);
+        super(60);
+    }
+    @Override
+    public int getAttack() {
+        return 3;
     }
 
     @Override
-    public void getsHit(Warrior warrior) {
-        int attack = warrior.getAttack() - getDefense();
-        if (attack <= 0) {
-            attack = 0;
-        }
-        setHealth(getHealth() - attack);
+    void receiveDamage(int attack) {
+       super.receiveDamage(Math.max(0,attack - getDefense()));
     }
 
     public int getDefense() {
