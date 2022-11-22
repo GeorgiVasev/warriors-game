@@ -8,6 +8,10 @@ public class Warrior {
 
     private Warrior nextWarrior;
 
+    public void setNextWarrior(Warrior nextWarrior) {
+        this.nextWarrior = nextWarrior;
+    }
+
     public Warrior getNextWarrior() {
         return nextWarrior;
     }

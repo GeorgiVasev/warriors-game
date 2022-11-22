@@ -5,7 +5,7 @@ import charchters.Warrior;
 public class Rookie extends Warrior {
 
     public Rookie() {
-        super(50);
+        super(6);
     }
 
     @Override

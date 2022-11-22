@@ -10,6 +10,7 @@ public class Battle {
     private Battle() {
     }
 
+
     public static boolean fight(Warrior warriorOne, Warrior warriorTwo) {
         while (warriorOne.isAlive() && warriorTwo.isAlive()) {
             warriorOne.hit(warriorTwo);
@@ -28,7 +29,12 @@ public class Battle {
         var it2 = redArmy.iterator();
 
         while (it1.hasNext() && it2.hasNext()) {
-            fight(it1.next(), it2.next());
+            Warrior blueFirst = it1.next();
+            Warrior redFirst = it2.next();
+            blueFirst.setNextWarrior(it1.next());
+            redFirst.setNextWarrior(it2.next());
+
+            fight(blueFirst, redFirst);
         }
         return it1.hasNext();
     }

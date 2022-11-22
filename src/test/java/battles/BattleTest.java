@@ -247,9 +247,21 @@ class BattleTest {
                                 .addUnit(Vampire::new, 3)
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Lancer::new, 2),
-                        false)
-
+                        false),
+                arguments(
+                        new Army()
+                                .addUnit(Lancer::new, 1),
+                        new Army()
+                                .addUnit(Rookie::new, 1)
+                                .addUnit(Warrior::new, 1),
+                        true),
+                arguments(
+                        new Army()
+                                .addUnit(Lancer::new, 2),
+                        new Army()
+                                .addUnit(Rookie::new, 1)
+                                .addUnit(Warrior::new, 2),
+                        true)
         );
     }
-
 }

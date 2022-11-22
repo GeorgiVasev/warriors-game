@@ -36,19 +36,18 @@ public class Army implements Iterable<Warrior> {
     class ArmyIterator implements Iterator<Warrior> {
 
         Iterator<Warrior> iterator = troops.iterator();
-        Warrior winner;
+        Warrior champion;
 
         @Override
         public boolean hasNext() {
-            if (winner == null || !winner.isAlive()) {
-                if (iterator.hasNext()) {
-                    winner = iterator.next();
-                    return true;
-                } else {
-                    return false;
-                }
+            if (champion != null && champion.isAlive()) {
+                return true;
             }
-            return true;
+            while (iterator.hasNext()) {
+                champion = iterator.next();
+                if (champion.isAlive()) return true;
+            }
+            return false;
         }
 
         @Override
@@ -56,7 +55,7 @@ public class Army implements Iterable<Warrior> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            return winner;
+            return champion;
         }
     }
 }

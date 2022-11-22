@@ -15,12 +15,12 @@ public class Vampire extends Warrior {
 
     @Override
     public void hit(Warrior opponent) {
-        var healthBefore = opponent.getHealth();
+        int healthBefore = opponent.getHealth();
         super.hit(opponent);
-        var healthAfter = opponent.getHealth();
-        var dealtDamage = healthBefore - healthAfter;
+        int healthAfter = opponent.getHealth();
+        int dealtDamage = healthBefore - healthAfter;
         final int PERCENTS = 100;
-        var healingPoints = dealtDamage * VAMPIRISM / PERCENTS;
+        int healingPoints = dealtDamage * VAMPIRISM / PERCENTS;
         healBy(healingPoints);
     }
 
