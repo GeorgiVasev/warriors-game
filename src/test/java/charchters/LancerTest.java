@@ -42,7 +42,7 @@ class LancerTest {
 
     @Test
     @DisplayName("LancerVsWarrior")
-    void fight1() {
+    void firstFight() {
         assertAll(
                 () -> assertEquals(50, freeLancer.getHealth()),
                 () -> assertEquals(6, freeLancer.getAttack()),
@@ -55,7 +55,7 @@ class LancerTest {
 
     @Test
     @DisplayName("LancerVsKnight")
-    void fight2() {
+    void secondFight() {
         assertAll(
                 () -> assertEquals(50, freeLancer.getHealth()),
                 () -> assertEquals(6, freeLancer.getAttack()),
@@ -70,7 +70,7 @@ class LancerTest {
 
     @Test
     @DisplayName("LancerVsDefender")
-    void fight3() {
+    void thirdFight() {
         assertAll(
                 () -> assertEquals(50, freeLancer.getHealth()),
                 () -> assertEquals(6, freeLancer.getAttack()),
@@ -85,7 +85,7 @@ class LancerTest {
 
     @Test
     @DisplayName("LancerVsVampire")
-    void fight4() {
+    void foruthFight() {
         assertAll(
                 () -> assertEquals(50, freeLancer.getHealth()),
                 () -> assertEquals(6, freeLancer.getAttack()),
@@ -100,7 +100,7 @@ class LancerTest {
 
     @Test
     @DisplayName("LancerVsLancer")
-    void fight5() {
+    void fifthFight() {
         assertAll(
                 () -> assertEquals(50, freeLancer.getHealth()),
                 () -> assertEquals(6, freeLancer.getAttack()),
