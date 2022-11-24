@@ -1,6 +1,7 @@
 package Armies;
 
-import charchters.Warrior;
+import charchters.HasWarriorBehind;
+import charchters.IWarrior;
 
 
 import java.util.ArrayList;
@@ -9,19 +10,70 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Supplier;
 
-public class Army implements Iterable<Warrior> {
+public class Army implements Iterable<IWarrior> {
 
     public Army() {
         // default constructor
     }
 
-    private Collection<Warrior> troops = new ArrayList<>();
+    private Collection<IWarrior> troops = new ArrayList<>();
+    private WarriorInArmy tail;
 
-    private void addUnit(Warrior warrior) {
-        troops.add(warrior);
+    static class WarriorInArmy implements IWarrior, HasWarriorBehind {
+
+        IWarrior warrior;
+        IWarrior nextWarrior;
+
+        public WarriorInArmy(IWarrior warrior) {
+            this.warrior = warrior;
+        }
+
+        @Override
+        public void hit(IWarrior opponent) {
+            warrior.hit(opponent);
+        }
+
+        @Override
+        public int getAttack() {
+            return 0;
+        }
+
+        @Override
+        public void receiveDamage(int attack) {
+            warrior.receiveDamage(attack);
+        }
+
+        @Override
+        public int getHealth() {
+            return warrior.getHealth();
+        }
+
+        @Override
+        public boolean isAlive() {
+            return IWarrior.super.isAlive();
+        }
+
+        @Override
+        public IWarrior getWarriorBehind() {
+            return nextWarrior;
+        }
+
+        private void setNextWarrior(IWarrior nextWarrior) {
+            this.nextWarrior = nextWarrior;
+        }
+
     }
 
-    public Army addUnit(Supplier<Warrior> factory, int quantity) {
+    private void addUnit(IWarrior warrior) {
+        WarriorInArmy wrapped = new WarriorInArmy(warrior);
+        if (tail != null) {
+            tail.setNextWarrior(wrapped);
+        }
+        tail = wrapped;
+        troops.add(wrapped);
+    }
+
+    public Army addUnit(Supplier<IWarrior> factory, int quantity) {
         for (int i = 0; i < quantity; i++) {
             addUnit(factory.get());
         }
@@ -29,14 +81,14 @@ public class Army implements Iterable<Warrior> {
     }
 
     @Override
-    public Iterator<Warrior> iterator() {
+    public Iterator<IWarrior> iterator() {
         return new ArmyIterator();
     }
 
-    class ArmyIterator implements Iterator<Warrior> {
+    class ArmyIterator implements Iterator<IWarrior> {
 
-        Iterator<Warrior> iterator = troops.iterator();
-        Warrior champion;
+        Iterator<IWarrior> iterator = troops.iterator();
+        IWarrior champion;
 
         @Override
         public boolean hasNext() {
@@ -51,7 +103,7 @@ public class Army implements Iterable<Warrior> {
         }
 
         @Override
-        public Warrior next() {
+        public IWarrior next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }

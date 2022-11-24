@@ -2,7 +2,8 @@ package battles;
 
 
 import Armies.Army;
-import charchters.Warrior;
+import charchters.IWarrior;
+
 
 
 public class Battle {
@@ -10,8 +11,7 @@ public class Battle {
     private Battle() {
     }
 
-
-    public static boolean fight(Warrior warriorOne, Warrior warriorTwo) {
+    public static boolean fight(IWarrior warriorOne, IWarrior warriorTwo) {
         while (warriorOne.isAlive() && warriorTwo.isAlive()) {
             warriorOne.hit(warriorTwo);
 
@@ -29,10 +29,8 @@ public class Battle {
         var it2 = redArmy.iterator();
 
         while (it1.hasNext() && it2.hasNext()) {
-            Warrior blueFirst = it1.next();
-            Warrior redFirst = it2.next();
-            blueFirst.setNextWarrior(it1.next());
-            redFirst.setNextWarrior(it2.next());
+            IWarrior blueFirst =  it1.next();
+            IWarrior redFirst =  it2.next();
 
             fight(blueFirst, redFirst);
         }

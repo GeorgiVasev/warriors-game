@@ -1,11 +1,9 @@
-package battles;
-
-import charchters.Warrior;
+package charchters;
 
 public class Rookie extends Warrior {
 
     public Rookie() {
-        super(6);
+        super(30);
     }
 
     @Override

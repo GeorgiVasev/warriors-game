@@ -1,20 +1,10 @@
 package charchters;
 
-public class Warrior {
+public class Warrior implements IWarrior {
 
     private static int ATTACK = 5;
     private int health;
     private final int initialHealth;
-
-    private Warrior nextWarrior;
-
-    public void setNextWarrior(Warrior nextWarrior) {
-        this.nextWarrior = nextWarrior;
-    }
-
-    public Warrior getNextWarrior() {
-        return nextWarrior;
-    }
 
     public Warrior() {
         this(50);
@@ -24,15 +14,17 @@ public class Warrior {
         initialHealth = this.health = health;
     }
 
+    @Override
     public boolean isAlive() {
         return health > 0;
     }
 
-    public void hit(Warrior opponent) {
+    @Override
+    public void hit(IWarrior opponent) {
         opponent.receiveDamage(getAttack());
     }
 
-    void receiveDamage(int attack) {
+    public void receiveDamage(int attack) {
         setHealth(getHealth() - attack);
     }
 

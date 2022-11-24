@@ -15,16 +15,21 @@ public class Lancer extends Warrior {
     }
 
     @Override
-    public void hit(Warrior opponent) {
+    public void hit(IWarrior opponent) {
 
         int healthBefore = opponent.getHealth();
         super.hit(opponent);
-        int healthAfter = opponent.getHealth();
-        int dealtDamage = healthBefore - healthAfter;
 
-        final int PERCENTS = 100;
-        var lanceDamage = dealtDamage * RANGE_DAMAGE / PERCENTS;
+        if (opponent instanceof HasWarriorBehind opponentWithNext) {
+            IWarrior nextWarrior = opponentWithNext.getWarriorBehind();
+            if (nextWarrior != null) {
+                int healthAfter = opponent.getHealth();
+                int dealtDamage = healthBefore - healthAfter;
 
-        opponent.getNextWarrior().receiveDamage(lanceDamage);
+                final int PERCENTS = 100;
+                var lanceDamage = dealtDamage * RANGE_DAMAGE / PERCENTS;
+                nextWarrior.receiveDamage(lanceDamage);
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@ public class Defender extends Warrior {
     }
 
     @Override
-    void receiveDamage(int attack) {
+    public void receiveDamage(int attack) {
         super.receiveDamage(Math.max(0, attack - getDefense()));
     }
 
