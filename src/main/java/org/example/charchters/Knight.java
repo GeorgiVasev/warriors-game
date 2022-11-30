@@ -1,4 +1,4 @@
-package charchters;
+package org.example.charchters;
 
 public class Knight extends Warrior {
 

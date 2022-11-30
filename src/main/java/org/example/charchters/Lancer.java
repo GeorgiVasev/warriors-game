@@ -1,8 +1,6 @@
-package charchters;
-
+package org.example.charchters;
 
 public class Lancer extends Warrior {
-
     private static final int RANGE_DAMAGE = 50;
 
     public Lancer() {
@@ -16,7 +14,6 @@ public class Lancer extends Warrior {
 
     @Override
     public void hit(IWarrior opponent) {
-
         int healthBefore = opponent.getHealth();
         super.hit(opponent);
 
@@ -25,7 +22,6 @@ public class Lancer extends Warrior {
             if (nextWarrior != null) {
                 int healthAfter = opponent.getHealth();
                 int dealtDamage = healthBefore - healthAfter;
-
                 final int PERCENTS = 100;
                 var lanceDamage = dealtDamage * RANGE_DAMAGE / PERCENTS;
                 nextWarrior.receiveDamage(lanceDamage);

@@ -1,16 +1,5 @@
-package charchters;
+package org.example.charchters;
 
-interface Command {
-}
-
-enum ChampionHitCommand implements Command {
-    INSTANCE
-}
-
-interface CanProcessCommand {
-    default void processCommand(Command command, IWarrior sender) {
-    }
-}
 
 public interface IWarrior {
     default void hit(IWarrior opponent) {
@@ -26,5 +15,4 @@ public interface IWarrior {
     default boolean isAlive() {
         return getHealth() > 0;
     }
-
 }

@@ -1,4 +1,4 @@
-package charchters;
+package org.example.charchters;
 
 public class Warrior implements IWarrior {
 
@@ -12,16 +12,6 @@ public class Warrior implements IWarrior {
 
     protected Warrior(int health) {
         initialHealth = this.health = health;
-    }
-
-    @Override
-    public boolean isAlive() {
-        return health > 0;
-    }
-
-    @Override
-    public void hit(IWarrior opponent) {
-        opponent.receiveDamage(getAttack());
     }
 
     public void receiveDamage(int attack) {

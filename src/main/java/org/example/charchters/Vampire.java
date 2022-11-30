@@ -1,4 +1,4 @@
-package charchters;
+package org.example.charchters;
 
 public class Vampire extends Warrior {
 
@@ -23,5 +23,4 @@ public class Vampire extends Warrior {
         int healingPoints = dealtDamage * VAMPIRISM / PERCENTS;
         healBy(healingPoints);
     }
-
 }
