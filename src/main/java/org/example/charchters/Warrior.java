@@ -1,6 +1,8 @@
 package org.example.charchters;
 
 public class Warrior implements IWarrior {
+    private static int idSequence;
+    private final int id = ++idSequence;
 
     private static int ATTACK = 5;
     private int health;
@@ -32,5 +34,12 @@ public class Warrior implements IWarrior {
 
     protected void healBy(int healPoint) {
         setHealth(getHealth() + healPoint);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                "#%02d".formatted(id) +
+                "{hp=" +getHealth() + "}";
     }
 }

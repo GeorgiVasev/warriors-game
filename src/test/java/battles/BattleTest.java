@@ -1,8 +1,7 @@
 package battles;
 
-import org.example.Armies.StraightArmy;
-import org.example.Armies.WholeArmy;
 import charchters.*;
+import org.example.Armies.Army;
 import org.example.battles.Battle;
 import org.example.charchters.*;
 import org.junit.jupiter.api.DisplayName;
@@ -22,143 +21,143 @@ class BattleTest {
     @DisplayName("Battle Two whole Armies fight")
     @ParameterizedTest
     @MethodSource("testTwoWholeArmiesFight")
-    void battleArmies(WholeArmy blue, WholeArmy red, boolean expected) {
+    void battleArmies(Army blue, Army red, boolean expected) {
         assertEquals(expected, Battle.fight(blue, red));
     }
 
     static List<Arguments> testTwoWholeArmiesFight() {
         return List.of(
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 2),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 2),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 3),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 5),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 7),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 20),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 21),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 10),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 11),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 11),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 7),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 5)
                                 .addUnit(Defender::new, 4)
                                 .addUnit(Defender::new, 5),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 4),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 5)
                                 .addUnit(Warrior::new, 20)
                                 .addUnit(Defender::new, 4),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 21),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 10)
                                 .addUnit(Defender::new, 5)
                                 .addUnit(Warrior::new, 5),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 10),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 2)
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Defender::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 5),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 2)
                                 .addUnit(Vampire::new, 3)
                                 .addUnit(Warrior::new, 4),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 4)
                                 .addUnit(Defender::new, 4)
                                 .addUnit(Vampire::new, 3),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 11)
                                 .addUnit(Vampire::new, 3)
                                 .addUnit(Warrior::new, 4),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 4)
                                 .addUnit(Defender::new, 4)
                                 .addUnit(Vampire::new, 13),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 9)
                                 .addUnit(Vampire::new, 3)
                                 .addUnit(Warrior::new, 8),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 4)
                                 .addUnit(Defender::new, 4)
                                 .addUnit(Vampire::new, 13),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 2)
                                 .addUnit(Vampire::new, 2)
                                 .addUnit(Lancer::new, 4)
                                 .addUnit(Warrior::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 2)
                                 .addUnit(Lancer::new, 2)
                                 .addUnit(Defender::new, 2)
                                 .addUnit(Vampire::new, 3),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Lancer::new, 1)
                                 .addUnit(Defender::new, 2),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Vampire::new, 3)
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Lancer::new, 2),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Rookie::new, 1)
                                 .addUnit(Warrior::new, 1),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 2),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Rookie::new, 1)
                                 .addUnit(Warrior::new, 2),
                         true)
@@ -169,21 +168,31 @@ class BattleTest {
     @DisplayName("Battle 2 Straight armies fight")
     @ParameterizedTest
     @MethodSource("testStraightFight")
-    void battleArmies(StraightArmy blue, StraightArmy red, boolean expected) {
+    void battleStraightArmies(Army blue, Army red, boolean expected) {
         assertEquals(expected, Battle.straightArmyFight(blue, red));
     }
 
     static List<Arguments> testStraightFight() {
         return List.of(
                 arguments(
-                        new StraightArmy()
+                        new Army()
+                                .addUnit(Warrior::new, 2)
+                                .addUnit(Knight::new, 1),
+                        new Army()
+                                .addUnit(Knight::new, 1)
+                                .addUnit(Healer::new, 1)
+                                .addUnit(Knight::new, 1),
+                        true)
+                /*
+                arguments(
+                        new Army()
                                 .addUnit(Defender::new, 2)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Vampire::new, 2)
                                 .addUnit(Lancer::new, 2)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Warrior::new, 1),
-                        new StraightArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 2)
                                 .addUnit(Lancer::new, 4)
                                 .addUnit(Healer::new, 1)
@@ -192,24 +201,26 @@ class BattleTest {
                                 .addUnit(Healer::new, 1),
                         false),
                 arguments(
-                        new StraightArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Lancer::new, 1)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Defender::new, 2),
-                        new StraightArmy()
+                        new Army()
                                 .addUnit(Vampire::new, 3)
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Lancer::new, 2),
-                        true),
+                        false),
                 arguments(
-                        new StraightArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 10),
-                        new StraightArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 6)
                                 .addUnit(Lancer::new, 5),
                         false)
+
+                 */
         );
     }
 }

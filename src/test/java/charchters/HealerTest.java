@@ -1,6 +1,6 @@
 package charchters;
 
-import org.example.Armies.WholeArmy;
+import org.example.Armies.Army;
 import org.example.battles.Battle;
 import org.example.charchters.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -156,28 +156,28 @@ class HealerTest {
     @DisplayName("HealerVsArmy")
     @ParameterizedTest
     @MethodSource("testHealerVsArmyFight")
-    void battleHealer(WholeArmy blue, WholeArmy red, boolean expected) {
+    void battleHealer(Army blue, Army red, boolean expected) {
         assertEquals(expected, Battle.fight(blue, red));
     }
 
     static List<Arguments> testHealerVsArmyFight() {
         return List.of(
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Healer::new, 1),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 2)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Vampire::new, 2)
                                 .addUnit(Lancer::new, 2)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Warrior::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 2)
                                 .addUnit(Lancer::new, 4)
                                 .addUnit(Healer::new, 1)
@@ -186,26 +186,26 @@ class HealerTest {
                                 .addUnit(Healer::new, 1),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Lancer::new, 1)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Defender::new, 2),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Vampire::new, 3)
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Lancer::new, 2),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 7)
                                 .addUnit(Vampire::new, 3)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Warrior::new, 4)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Defender::new, 2),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 4)
                                 .addUnit(Defender::new, 4)
                                 .addUnit(Healer::new, 1)
@@ -213,14 +213,14 @@ class HealerTest {
                                 .addUnit(Lancer::new, 4),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 1)
                                 .addUnit(Warrior::new, 3)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Warrior::new, 4)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Knight::new, 2),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 4)
                                 .addUnit(Defender::new, 4)
                                 .addUnit(Healer::new, 1)

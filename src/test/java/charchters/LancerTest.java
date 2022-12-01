@@ -1,6 +1,6 @@
 package charchters;
 
-import org.example.Armies.WholeArmy;
+import org.example.Armies.Army;
 import org.example.battles.Battle;
 import org.example.charchters.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -148,44 +148,44 @@ class LancerTest {
     @DisplayName("LancerVsArmy")
     @ParameterizedTest
     @MethodSource("testLancerVsArmyFight")
-    void battleLancer(WholeArmy blue, WholeArmy red, boolean expected) {
+    void battleLancer(Army blue, Army red, boolean expected) {
         assertEquals(expected, Battle.fight(blue, red));
     }
 
     static List<Arguments> testLancerVsArmyFight() {
         return List.of(
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Warrior::new, 1)
                                 .addUnit(Knight::new, 1),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 1)
                                 .addUnit(Defender::new, 1),
                         false),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 1)
                                 .addUnit(Rookie::new, 1),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Defender::new, 1)
                                 .addUnit(Vampire::new, 1),
                         true),
                 arguments(
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Lancer::new, 1),
-                        new WholeArmy()
+                        new Army()
                                 .addUnit(Vampire::new, 1)
                                 .addUnit(Defender::new, 1),
                         false)

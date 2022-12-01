@@ -1,9 +1,9 @@
 package org.example.charchters;
 
+import org.example.Armies.Army;
 import org.example.Armies.CanProcessCommand;
 import org.example.Armies.ChampionHitCommand;
 import org.example.Armies.Command;
-import org.example.Armies.WholeArmy;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -24,17 +24,15 @@ public class Healer
     }
 
     @Override
-    public void processCommand(Command command, WholeArmy.WarriorInArmy sender) {
+    public void processCommand(Command command, Army.WarriorInArmy sender) {
         if (command instanceof ChampionHitCommand) {
             heal(sender);
         }
     }
 
     public void heal(IWarrior patient) {
-        if (patient instanceof WholeArmy.WarriorInArmy p) {
+        if (patient instanceof Army.WarriorInArmy p) {
             p.unwrap(patient).healBy(getHealPower());
-        } else {
-            unwrapIWarrior(patient).healBy(getHealPower());
         }
     }
 
