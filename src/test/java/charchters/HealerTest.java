@@ -128,31 +128,6 @@ class HealerTest {
         );
     }
 
-    @Test
-    @DisplayName("HealerVsHealer")
-    void seventhFight() {
-        assertAll(
-                () -> assertEquals(60, eva.getHealth()),
-                () -> assertEquals(0, eva.getAttack()),
-                () -> assertEquals(60, meri.getHealth()),
-                () -> assertEquals(0, meri.getAttack()),
-                () -> assertFalse(Battle.fight(eva, meri)),
-                () -> assertFalse(eva.isAlive()),
-                () -> assertEquals(0, eva.getHealth()),
-                () -> assertEquals(0, meri.getHealth())
-        );
-    }
-
-    @Test
-    @DisplayName("HealingWorks")
-    void eightFight() {
-        assertTrue(Battle.fight(lacer, dracula));
-        assertTrue(lacer.isAlive());
-        assertEquals(14, lacer.getHealth());
-        eva.heal(lacer);
-        assertEquals(16, lacer.getHealth());
-    }
-
     @DisplayName("HealerVsArmy")
     @ParameterizedTest
     @MethodSource("testHealerVsArmyFight")

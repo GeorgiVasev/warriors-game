@@ -1,8 +1,12 @@
 package org.example.charchters;
 
-public class Defender extends Warrior {
+import weapons.Weapon;
 
-    private static final int DEFENSE = 2;
+public class Defender extends Warrior {
+    private static int idSequence;
+    private final int id = ++idSequence;
+    private int defense = 2;
+    private int attack = 3;
 
     public Defender() {
         super(60);
@@ -10,7 +14,7 @@ public class Defender extends Warrior {
 
     @Override
     public int getAttack() {
-        return 3;
+        return attack;
     }
 
     @Override
@@ -19,6 +23,26 @@ public class Defender extends Warrior {
     }
 
     public int getDefense() {
-        return DEFENSE;
+        return defense;
+    }
+
+    @Override
+    public void equipWeapons(Weapon... weapons) {
+        if(isAlive()) {
+            for (Weapon w : weapons) {
+                setInitialHealth(getHealth() + w.getHealth());
+                setHealth(getHealth() + w.getHealth());
+                defense += w.getDefense();
+                attack += w.getAttack();
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                "#%02d".formatted(id) +
+                "{hp=" + getHealth() + "}" +
+                "{A=" + getAttack() + "}";
     }
 }

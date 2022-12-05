@@ -182,8 +182,7 @@ class BattleTest {
                                 .addUnit(Knight::new, 1)
                                 .addUnit(Healer::new, 1)
                                 .addUnit(Knight::new, 1),
-                        true)
-                /*
+                        true),
                 arguments(
                         new Army()
                                 .addUnit(Defender::new, 2)
@@ -219,8 +218,6 @@ class BattleTest {
                                 .addUnit(Warrior::new, 6)
                                 .addUnit(Lancer::new, 5),
                         false)
-
-                 */
         );
     }
 }

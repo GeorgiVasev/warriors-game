@@ -1,4 +1,4 @@
-package org.example.Armies;
+package org.example.commands;
 
 public interface Command {
 }

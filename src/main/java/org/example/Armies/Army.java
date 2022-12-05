@@ -1,14 +1,14 @@
 package org.example.Armies;
 
 
-import org.example.charchters.HasWarriorBehind;
-import org.example.charchters.IWarrior;
-import org.example.charchters.Warrior;
+import org.example.charchters.*;
+import org.example.commands.CanProcessCommand;
+import org.example.commands.ChampionHitCommand;
+import org.example.commands.Command;
+import weapons.Weapon;
 
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class Army implements Iterable<IWarrior> {
@@ -18,12 +18,34 @@ public class Army implements Iterable<IWarrior> {
 
     private WarriorInArmy head;
     private WarriorInArmy tail;
+    private Warlord warlord;
+    private King king;
+
+    private List<IWarrior> troops = new ArrayList<>();
 
     public Army() {
         // default constructor
     }
 
+    public void moveUnits() {
+        if (warlord != null) {
+            var newArrangement = warlord.moveUnits(this);
+            head = null;
+            tail = null;
+
+            while (newArrangement.iterator().hasNext()) {
+                addUnit(newArrangement.iterator().next());
+            }
+        }
+    }
+
     private void addUnit(IWarrior warrior) {
+        if (warrior instanceof King && king != null) {
+            return;
+        } else if (warrior instanceof King currWarrior) {
+            king = currWarrior;
+        }
+
         WarriorInArmy wrapped = new WarriorInArmy(warrior);
         if (head == null) {
             head = wrapped;
@@ -31,6 +53,7 @@ public class Army implements Iterable<IWarrior> {
             tail.setNextWarrior(wrapped);
         }
         tail = wrapped;
+        troops.add(tail);
     }
 
     public Army addUnit(Supplier<IWarrior> factory, int quantity) {
@@ -90,6 +113,11 @@ public class Army implements Iterable<IWarrior> {
         }
 
         @Override
+        public void equipWeapons(Weapon... weapons) {
+            warrior.equipWeapons(weapons);
+        }
+
+        @Override
         public WarriorInArmy getWarriorBehind() {
             return nextWarrior;
         }
@@ -98,6 +126,14 @@ public class Army implements Iterable<IWarrior> {
             this.nextWarrior = nextWarrior;
         }
 
+        public IWarrior getWarrior() {
+            return this.warrior;
+        }
+
+        @Override
+        public String toString() {
+            return getWarrior().toString();
+        }
     }
 
     @Override
@@ -153,9 +189,23 @@ public class Army implements Iterable<IWarrior> {
         }
     }
 
+    public void equipWarriorAtPosition(int position, Weapon... weapon) {
+        if (troops.get(position) != null) {
+            troops.get(position).equipWeapons(weapon);
+        }
+    }
+
+    public Warrior unwrap(IWarrior war) {
+        return (Warrior) war;
+    }
+
+    public List<IWarrior> getTroops() {
+        return troops;
+    }
+
     @Override
     public String toString() {
-        StringJoiner sj = new StringJoiner(",\n", "Army#%02d[%n ".formatted(id), "\n]");
+        StringJoiner sj = new StringJoiner(",\n", "Army#%02d[%n".formatted(id), "\n]");
         sj.setEmptyValue("Army#%02d[ EMPTY ]".formatted(id));
         for (var warrior : this) {
             sj.add(warrior.toString());

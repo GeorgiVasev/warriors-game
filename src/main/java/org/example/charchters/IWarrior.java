@@ -1,6 +1,8 @@
 package org.example.charchters;
 
 
+import weapons.Weapon;
+
 public interface IWarrior {
     default void hit(IWarrior opponent) {
         opponent.receiveDamage(getAttack());
@@ -15,4 +17,6 @@ public interface IWarrior {
     default boolean isAlive() {
         return getHealth() > 0;
     }
+
+    void equipWeapons(Weapon...weapons);
 }

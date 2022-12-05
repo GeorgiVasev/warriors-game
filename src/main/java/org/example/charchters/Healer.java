@@ -1,18 +1,21 @@
 package org.example.charchters;
 
 import org.example.Armies.Army;
-import org.example.Armies.CanProcessCommand;
-import org.example.Armies.ChampionHitCommand;
-import org.example.Armies.Command;
+import org.example.commands.CanProcessCommand;
+import org.example.commands.ChampionHitCommand;
+import org.example.commands.Command;
 import lombok.extern.slf4j.Slf4j;
+import weapons.Weapon;
 
 
 @Slf4j
 public class Healer
         extends Warrior
         implements IWarrior, CanProcessCommand {
+    private static int idSequence;
+    private final int id = ++idSequence;
 
-    private static final int HEAL_POWER = 2;
+    private int healPower = 2;
 
     public Healer() {
         super(60);
@@ -36,16 +39,30 @@ public class Healer
         }
     }
 
-    public Warrior unwrapIWarrior(IWarrior patient) {
-        return (Warrior) patient;
-    }
-
     @Override
     public void hit(IWarrior opponent) {
         // do nothing!
     }
 
-    public static int getHealPower() {
-        return HEAL_POWER;
+    @Override
+    public void equipWeapons(Weapon... weapons) {
+        if(isAlive()) {
+            for (Weapon w : weapons) {
+                setInitialHealth(getHealth() + w.getHealth());
+                setHealth(getHealth() + w.getHealth());
+                healPower += w.getHealPower();
+            }
+        }
+    }
+
+    public int getHealPower() {
+        return healPower;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                "#%02d".formatted(id) +
+                "{hp=" + getHealth() + "}";
     }
 }

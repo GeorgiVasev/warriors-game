@@ -129,7 +129,6 @@ class WarriorTest {
         );
     }
 
-
     @Test
     @DisplayName("WarriorVsHealer")
     void seventhFight() {
